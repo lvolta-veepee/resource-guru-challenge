@@ -10,10 +10,12 @@ export class TreeNode {
   result() {
     return evaluateTree(this);
   }
-  toString() {}
+  toString() {
+    return stringify(this);
+  }
 }
 
-export function evaluateTree(root: TreeNode | null): number {
+function evaluateTree(root: TreeNode | null): number {
   if (root === null) return 0;
 
   if (root.left === null && root.right === null) {
@@ -29,4 +31,20 @@ export function evaluateTree(root: TreeNode | null): number {
   if (root.value === "÷") return leftResult / rightResult;
 
   return 0;
+}
+
+function stringify(node: TreeNode | null): string {
+  if (node === null) return "";
+
+  if (node.left === null && node.right === null) return `${node.value}`;
+
+  const leftResult: string = stringify(node.left);
+  const rightResult: string = stringify(node.right);
+
+  if (node.value === "+") return `(${leftResult} + ${rightResult})`;
+  if (node.value === "-") return `(${leftResult} - ${rightResult})`;
+  if (node.value === "÷") return `(${leftResult} ÷ ${rightResult})`;
+  if (node.value === "*") return `(${leftResult} x ${rightResult})`;
+
+  return "";
 }

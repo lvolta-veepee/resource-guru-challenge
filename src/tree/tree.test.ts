@@ -64,7 +64,7 @@ describe.only("Tree", () => {
     });
   });
 
-  describe.skip("TreeNode.toString()", () => {
+  describe("TreeNode.toString()", () => {
     it("should be able stringify a simple (+) operation", () => {
       const fivePlusThree = new TreeNode("+");
       fivePlusThree.left = new TreeNode(5);
@@ -80,17 +80,17 @@ describe.only("Tree", () => {
     });
 
     it("should be able stringify a simple (*) operation", () => {
-      const fiveTimesThree = new TreeNode("-");
+      const fiveTimesThree = new TreeNode("*");
       fiveTimesThree.left = new TreeNode(5);
       fiveTimesThree.right = new TreeNode(3);
-      expect(fiveTimesThree.toString()).toBe("(5 * 3)");
+      expect(fiveTimesThree.toString()).toBe("(5 x 3)");
     });
 
     it("should be able to stringify a single (÷) operation", () => {
       const nineDividedByThree = new TreeNode("÷");
       nineDividedByThree.left = new TreeNode(9);
       nineDividedByThree.right = new TreeNode(3);
-      expect(nineDividedByThree.result()).toBe("(9 ÷ 3)");
+      expect(nineDividedByThree.toString()).toBe("(9 ÷ 3)");
     });
   });
 });
