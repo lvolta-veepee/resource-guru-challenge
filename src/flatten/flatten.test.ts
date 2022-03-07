@@ -23,4 +23,12 @@ describe("flatten()", () => {
     const expected = [1, 2, 3, 4, 5, 6, 7, 8];
     expect(flatten([1, [2, [3, 4, [5, [6, 7]]]], 8])).toEqual(expected);
   });
+
+  it("supports the arguments object", () => {
+    const result = (function (...inputs: any[]) {
+      return flatten(arguments);
+    })(1, 2, 3, 4, [5]);
+
+    expect(result).toEqual([1, 2, 3, 4, 5]);
+  });
 });
