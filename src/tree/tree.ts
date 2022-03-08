@@ -13,13 +13,19 @@ export class TreeNode {
   toString() {
     return stringify(this);
   }
+  isOperandNode() {
+    return typeof this.value === "number";
+  }
 }
 
 function evaluateTree(root: TreeNode | null): number {
   if (root === null) return 0;
 
   if (root.left === null && root.right === null) {
-    return root.value as number; // safe type casting as TreeNode is a leaf node holding a number
+    if (root.isOperandNode()) {
+      return root.value as number;
+    }
+    throw new Error("Impossible to evaluate a TreeNode holding an operator.");
   }
 
   const leftResult = evaluateTree(root.left);
