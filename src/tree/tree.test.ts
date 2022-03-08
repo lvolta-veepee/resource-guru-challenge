@@ -16,6 +16,14 @@ describe.only("Tree", () => {
   });
 
   describe("TreeNode.result()", () => {
+    it("should return TreeNode.value when TreeNode has no children", () => {
+      expect(new TreeNode(3).result()).toBe(3);
+    });
+
+    it("should throw when called on a TreeNode holding an operator", () => {
+      expect(() => new TreeNode("*").result()).toThrow();
+    });
+
     it("should be able to compute a single (+) operation", () => {
       const fivePlusThree = new TreeNode("+");
       fivePlusThree.left = new TreeNode(5);
@@ -65,6 +73,14 @@ describe.only("Tree", () => {
   });
 
   describe("TreeNode.toString()", () => {
+    it("should be able stringify a TreeNode with no children", () => {
+      expect(new TreeNode(5).toString()).toBe("5");
+    });
+
+    it("should be able stringify a TreeNode holding an operator", () => {
+      expect(new TreeNode("-").toString()).toBe("-");
+    });
+
     it("should be able stringify a simple (+) operation", () => {
       const fivePlusThree = new TreeNode("+");
       fivePlusThree.left = new TreeNode(5);
